@@ -48,7 +48,7 @@
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a href="#" class="dropdown-item"><span class="name">Profile</span></a>
-                                            <a href="#" class="dropdown-item"><span class="name">Logout</span></a>
+                                            <a href="{{ route('page.destroy') }}" class="dropdown-item"><span class="name">Logout</span></a>
                                         </li>
                                     </ul>
                                 </div>

@@ -43,16 +43,24 @@
                     <p class="text-center fs-5 fw-semibold text-black text-break mb-4">SSMS</p>
                     <p class="text-center fs-5 fw-semibold text-black text-break lh-1" style="letter-spacing: 2px">LOGIN HERE</p>
                 </div>
-                <form action="" method="">
+                <form action="{{ route('login.index') }}" method="POST">
+                    @csrf
                     <div class="login-wrapper container-md p-4 mb-3">
                         <div class="form-floating mb-2">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                             <label for="floatingInput">Email address</label>
+                            @error('email')
+                                <div class="text-danger fw-medium"><small>{{ $message }}</small></div>
+                            @enderror
                         </div>
-                        <div class="form-floating mb-1">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                        <div class="form-floating mb-0 input-icon d-flex align-items-center">
+                            <input type="password" name="password" id="password" class="form-control" id="floatingPassword" placeholder="Password">
                             <label for="floatingPassword">Password</label>
+                            <i class="fa-regular fa-eye text-black-50" id="togglePassword"></i>
                         </div>
+                        @error('password')
+                            <div class="text-danger fw-medium"><small>{{ $message }}</small></div>
+                        @enderror
                         <p class="text-sm-end mb-0"><a class="text-decoration-none text-black" href="#"><small class="fw-medium text-black-50">Forgot Password</small></a></p>
                     </div>
                     <div class="d-flex justify-content-center align-items center mb-5">
@@ -65,9 +73,18 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const wrapperLogos = document.querySelector('.wrapper_logos');
-            const loginForm = document.querySelector('.login-form');
             wrapperLogos.classList.add('slide-in-left');
-            loginForm.classList.add('slide-in-up');
+        });
+    </script>
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+    
+        togglePassword.addEventListener('click', function(e) {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
         });
     </script>
 </body>

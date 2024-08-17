@@ -14,10 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::group(["prefix"=> "auth"], function () {
+    Route::post("login", [App\Http\Controllers\Auth\AdminAuthController::class,"index"])->name("login.index");
+    Route::get("logout", [App\Http\Controllers\Auth\AdminAuthController::class,"destroy"])->name("page.destroy");
 });
 
+
+
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('index', [App\Http\Controllers\API\Admin\AdminDashboard::class,'index']);
+    Route::get('index', [App\Http\Controllers\API\Admin\AdminDashboard::class,'index'])->name('admin.index');
 });
+
+
+   

@@ -41,6 +41,16 @@ button[type=submit]{
     -moz-box-shadow: 0px 0px 3px 3px rgba(175,175,175,0.54);
 }
 
+.input-icon{
+    position: relative !important;
+}
+.input-icon i{
+    font-size: 1.2rem;
+    position: absolute !important;
+    right: 15px;
+    cursor: pointer;
+}
+
 
 /* animations  */
 @keyframes slideInLeft {
@@ -53,20 +63,6 @@ button[type=submit]{
         opacity: 1;
     }
 }
-@keyframes slideInUp {
-    0% {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 .slide-in-left {
     animation: slideInLeft 1s ease-out forwards;
-}
-
-.slide-in-up {
-    animation: slideInUp 1s ease-out forwards;
 }
